@@ -16,4 +16,5 @@ class Usuario{
     var telefone: String? = null
     var senha: String? = null
 
+
 }
