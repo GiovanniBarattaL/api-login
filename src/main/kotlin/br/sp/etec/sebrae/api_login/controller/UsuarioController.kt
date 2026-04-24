@@ -19,6 +19,16 @@ class UsuarioController {
     fun cadastrarUsuario(@RequestBody usuario: Usuario): ResponseEntity<Usuario> {
         return ResponseEntity.ok(repository!!.save(usuario))
     }
+    @PostMapping("/buscarporemail")
+    fun buscarPorEmail(@RequestBody login: Login): ResponseEntity<Usuario> {
+        val usuario = repository?.findByEmail(login.email)
+
+        return if (usuario != null) {
+            ResponseEntity.ok(usuario)
+        } else {
+            ResponseEntity.notFound().build()
+        }
+    }
 
     @PostMapping("/autenticar")
     fun autenticar(@RequestBody login: Login): ResponseEntity<Boolean> {
